@@ -1,0 +1,63 @@
+:root {
+  --background: #f7e8d0;
+  --foreground: #37230b;
+  --menu-heavy: #040000;
+  --menu-medium: #261211;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #37230b;
+    --foreground: #f7e8d0;
+    --menu-heavy: #d5c6a8;
+    --menu-medium: #e6d7bf;
+  }
+}
+
+@custom-variant dark (&:is(.dark *));
+
+.hide-on-mobile {
+  display: none;
+}
+.show-on-mobile {
+  display: block;
+}
+@media (min-width: 768px) {
+  .hide-on-mobile {
+    display: block;
+  }
+  .show-on-mobile {
+    display: none;
+  }
+}
+
+html,
+body {
+  height: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--font-geist-sans);
+  color: var(--foreground);
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
