@@ -7,6 +7,10 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
+    "build:static": "NEXT_BUILD_TYPE=export next build --turbopack",
+    "start:static": "npx serve@latest out",
+    "build:standalone": "NEXT_BUILD_TYPE=standalone next build --turbopack",
+    "start:standalone": "node .next/standalone/server.js",
     "lint": "eslint"
   },
   "dependencies": {
