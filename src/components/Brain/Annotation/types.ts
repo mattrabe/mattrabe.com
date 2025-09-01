@@ -1,4 +1,3 @@
-import type { RefObject } from 'react'
 import type {
   Color,
   Vector3Tuple,
@@ -15,9 +14,6 @@ export type AnnotationProps = {
   contentPosition?: Vector3Tuple,
   fontSize?: number,
   expandedContentScale?: number,
-
-  expandedItemIdRef: RefObject<string | undefined>,
-
   isAutoShow?: boolean, // Defaults to false
   label: string,
   position: Vector3Tuple,

@@ -3,7 +3,6 @@
 import {
   useEffect,
   useMemo,
-  type RefObject,
 } from 'react'
 import { Html } from '@react-three/drei'
 
@@ -14,11 +13,7 @@ import { useCameraControls } from '../hooks/useCameraControls'
 
 import { annotations } from './annotations'
 
-export function Annotations({
-  expandedItemIdRef,
-}: {
-  expandedItemIdRef: RefObject<string | undefined>,
-}) {
+export function Annotations() {
   const { getColorVarThree } = useStyles()
 
   const colors = useMemo(() => ({
@@ -49,7 +44,6 @@ export function Annotations({
           key={annotation.label}
           colors={colors}
           {...annotation}
-          expandedItemIdRef={expandedItemIdRef}
         />
       ))}
 

@@ -25,6 +25,8 @@ import {
 
 import { useCameraControls } from '@/components/Brain/hooks/useCameraControls'
 import { useCameraPosition } from '@/components/Brain/hooks/useCameraPosition'
+
+import { useBrain } from '@/components/Brain/hooks/useBrain'
 import { useStyles } from '@/hooks/useStyles'
 
 import { Annotations } from '../Annotations'
@@ -32,20 +34,21 @@ import { BrainLoader } from '../Loader'
 
 import type { Node3D } from '../types'
 
-import type { ThreeDBrainProps } from './types'
-
 const BRAIN_GLB_PATH = '/3d-models/brain_areas.glb'
 //const BRAIN_GLB_PATH = '/3d-models/brain_areas-compressed.glb'
 
 useGLTF.preload(BRAIN_GLB_PATH)
 
-export function ThreeDBrain({
-  expandedItemIdRef,
-  onClickBrain,
-}: ThreeDBrainProps) {
+export function ThreeDBrain() {
   const progress = useProgress()
 
+  const { setExpandedItemId } = useBrain()
   const { cameraControlsRef } = useCameraControls()
+
+  const onClickBrain = useCallback(() => {
+    // Clear the expanded item id when the brain is clicked
+    setExpandedItemId(null)
+  }, [ setExpandedItemId ])
 
   return (
     <Suspense
@@ -68,9 +71,7 @@ export function ThreeDBrain({
         />
       </Stage>
 
-      <Annotations
-        expandedItemIdRef={expandedItemIdRef}
-      />
+      <Annotations />
 
       <OrbitControls
         ref={cameraControlsRef}
@@ -200,5 +201,3 @@ function useBrainNodes(gltf: GLTF & ObjectMap) {
 function isNode3D(node: Object3D): node is Node3D {
   return 'geometry' in node
 }
-
-export * from './types'

@@ -24,6 +24,7 @@ import {
   type SpringValue,
 } from '@react-spring/three'
 
+import { useBrain } from '@/components/Brain/hooks/useBrain'
 import { useCameraControls } from '@/components/Brain/hooks/useCameraControls'
 import { useCameraPosition } from '@/components/Brain/hooks/useCameraPosition'
 
@@ -37,7 +38,6 @@ export function Annotation({
   colors,
   content,
   expandedContentScale = 12,
-  expandedItemIdRef,
   fontSize = 0.0125,
   isAutoShow = false,
   position: positionProp,
@@ -74,6 +74,8 @@ export function Annotation({
 
   const { camera } = useThree()
 
+  const { expandedItemIdRef } = useBrain()
+
   const [
     springs,
     springsApi,
@@ -92,7 +94,7 @@ export function Annotation({
       duration: 333,
     },
     onStart: async () => {
-      if (expandedItemIdRef.current === id) {
+      if (expandedItemIdRef?.current === id) {
         // Update the spring to the current position, so that the antimation starting point is where the cameria is right now
         await new Promise(resolve => setCameraPosition?.(camera.position.toArray(), {
           duration: 0,
@@ -132,35 +134,37 @@ export function Annotation({
     event?.stopPropagation()
 
     // Allow only one annotation to be expanded at a time
-    if (expandedItemIdRef.current && expandedItemIdRef.current !== id) {
+    if (expandedItemIdRef?.current && expandedItemIdRef.current !== id) {
       return
     }
 
     // Set the expanded item id to the id of the annotation that was clicked
-    expandedItemIdRef.current = expandedItemIdRef.current === id ? undefined : id
+    if (expandedItemIdRef) {
+      expandedItemIdRef.current = expandedItemIdRef.current === id ? null : id
+    }
 
     // Set the previous camera position to the current camera position
-    if (expandedItemIdRef.current) {
+    if (expandedItemIdRef?.current) {
       previousCameraPositionRef.current = camera.position.toArray()
     }
 
     springsApi.start({
-      numCircleSegmentsToRender: expandedItemIdRef.current === id ? 36 : 36 * expandedContentScale * Math.PI * 10,
-      scale: expandedItemIdRef.current === id ? expandedContentScale : 1,
-      textOpacity: expandedItemIdRef.current === id ? 1 : 0,
-      labelOpacity: expandedItemIdRef.current === id ? 0 : 1,
-      contentOpacity: expandedItemIdRef.current === id ? 1 : 0,
-      circlePosition: expandedItemIdRef.current === id ? contentPosition : positionProp,
-      ringPosition: expandedItemIdRef.current === id ? [ contentPosition[0], contentPosition[1], contentPosition[2] - 0.0001 ] : [ positionProp[0], positionProp[1], positionProp[2] - 0.0001 ],
+      numCircleSegmentsToRender: expandedItemIdRef?.current === id ? 36 : 36 * expandedContentScale * Math.PI * 10,
+      scale: expandedItemIdRef?.current === id ? expandedContentScale : 1,
+      textOpacity: expandedItemIdRef?.current === id ? 1 : 0,
+      labelOpacity: expandedItemIdRef?.current === id ? 0 : 1,
+      contentOpacity: expandedItemIdRef?.current === id ? 1 : 0,
+      circlePosition: expandedItemIdRef?.current === id ? contentPosition : positionProp,
+      ringPosition: expandedItemIdRef?.current === id ? [ contentPosition[0], contentPosition[1], contentPosition[2] - 0.0001 ] : [ positionProp[0], positionProp[1], positionProp[2] - 0.0001 ],
     })
   }, [
+    camera.position,
+    contentPosition,
+    expandedContentScale,
     expandedItemIdRef,
     id,
     positionProp,
     springsApi,
-    contentPosition,
-    camera.position,
-    expandedContentScale
   ])
 
   // Open this annotation automatically if it isAutoShow
