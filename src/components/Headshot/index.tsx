@@ -1,13 +1,13 @@
 import Image from 'next/image'
 
 import headshotAi from '../../../public/images/headshot-ai.png'
-import headshotReal from '../../../public/images/headshot-real.jpg'
+//import headshotReal from '../../../public/images/headshot-real.jpg'
 
 import type { HeadshotProps } from './types'
 
 export function Headshot({
   style,
-  type = 'ai',
+  // type = 'ai',
   ...props
 }: HeadshotProps) {
   return (
@@ -16,6 +16,7 @@ export function Headshot({
         width: props.width,
         height: props.height,
         transition: 'opacity 0.42s ease-in-out, width 0.42s ease-in-out, height 0.42s ease-in-out',
+        zIndex: 100,
       }}
     >
       <Image
@@ -30,6 +31,7 @@ export function Headshot({
           transition: 'opacity 0.42s ease-in-out, width 0.42s ease-in-out, height 0.42s ease-in-out',
         }}
       />
+      {/*
       <Image
         src={headshotReal}
         alt='Matt Rabe'
@@ -43,6 +45,7 @@ export function Headshot({
           opacity: (type === 'real' && (style?.opacity || 1)) || 0,
         }}
       />
+      */}
     </div>
   )
 }

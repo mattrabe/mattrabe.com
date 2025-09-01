@@ -1,3 +1,5 @@
 export type MenuProps = {
-  isVisible: boolean
+  isOverlayVisible: boolean,
+  isVisible: boolean,
+  onRequestClose: () => void,
 }

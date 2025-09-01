@@ -1,27 +1,66 @@
-import { type RefObject } from 'react'
+'use client'
 
-import { type Vector3Tuple } from 'three'
+import {
+  useEffect,
+  useMemo,
+  type RefObject,
+} from 'react'
+import { Html } from '@react-three/drei'
+
+import { useStyles } from '@/hooks/useStyles'
 
 import { Annotation } from '../Annotation'
+import { useCameraControls } from '../hooks/useCameraControls'
 
 import { annotations } from './annotations'
 
 export function Annotations({
   expandedItemIdRef,
-  enableCameraControl,
-  setCameraPosition,
 }: {
   expandedItemIdRef: RefObject<string | undefined>,
-  enableCameraControl: (enabled: boolean) => void,
-  setCameraPosition?: (position?: Vector3Tuple) => void,
 }) {
-  return annotations.map((annotation) => (
-    <Annotation
-      key={annotation.label}
-      {...annotation}
-      expandedItemIdRef={expandedItemIdRef}
-      enableCameraControl={enableCameraControl}
-      setCameraPosition={setCameraPosition}
-    />
-  ))
+  const { getColorVarThree } = useStyles()
+
+  const colors = useMemo(() => ({
+    background: getColorVarThree('--brain-background'),
+    foreground: getColorVarThree('--brain-foreground'),
+  }), [ getColorVarThree ])
+
+  const { setCameraControls } = useCameraControls()
+
+  useEffect(() => {
+    if (annotations.every(annotation => !annotation.isAutoShow)) {
+      // No autoload annotation exists - start rotation immediately
+      setCameraControls({
+        autoRotateEnabled: true,
+        dragToRotateEnabled: true,
+      })
+    }
+  }, [ setCameraControls ])
+
+  if (!colors) {
+    return null
+  }
+
+  return (
+    <>
+      {annotations.map((annotation) => (
+        <Annotation
+          key={annotation.label}
+          colors={colors}
+          {...annotation}
+          expandedItemIdRef={expandedItemIdRef}
+        />
+      ))}
+
+      {/* Output all of the annotations content as HTML, in case a bot wants to scrape it. The content rendered in the Canvas is not scrapable. */}
+      <Html
+        style={{ display: 'none' }}
+      >
+        {annotations.map((annotation) => (
+          <p key={annotation.label}>{annotation.label}: {annotation.content}</p>
+        ))}
+      </Html>
+    </>
+  )
 }

@@ -4,7 +4,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 import iconLight from './icon-light.png'
 import iconDark from './icon-dark.png'
 
-import './globals.css'
+import './ui/globals.css'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

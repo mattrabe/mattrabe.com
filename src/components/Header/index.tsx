@@ -34,17 +34,38 @@ export function Header({
   ] = useState(false)
 
   const [
+    isMenuOverlayVisible,
+    setIsMenuOverlayVisible,
+  ] = useState(false)
+
+  const [
     headshotType,
-    setHeadshotType,
+    // setHeadshotType,
   ] = useState<'ai' | 'real'>('ai')
 
   useEffect(() => {
     if (!isExpanded) {
+      // setHeadshotType('ai')
+
       setIsHovered(false)
       setIsMenuVisible(false)
 
-      return () => undefined
+      const timeout = setTimeout(() => {
+        setIsMenuOverlayVisible(false)
+      }, 250)
+
+      return () => clearTimeout(timeout)
     }
+
+    /*
+    const timeout = setTimeout(() => {
+      setHeadshotType(prev => prev === 'ai' ? 'real' : 'ai')
+    }, 2500)
+
+    return () => clearTimeout(timeout)
+    */
+
+    setIsMenuOverlayVisible(true)
 
     const timeout = setTimeout(() => {
       setIsMenuVisible(true)
@@ -98,7 +119,7 @@ export function Header({
           />
           <div
             style={{
-              color: 'var(--foreground)',
+              color: 'var(--color-foreground)',
               fontSize: isExpanded ? 21 : 14,
               overflow: 'hidden',
               opacity: (isHovered || isExpanded) ? HEADSHOT_OPACITY.on : HEADSHOT_OPACITY.off,
@@ -109,7 +130,11 @@ export function Header({
           </div>
         </div>
 
-        <Menu isVisible={isMenuVisible} />
+        <Menu
+          isVisible={isMenuVisible}
+          isOverlayVisible={isMenuOverlayVisible}
+          onRequestClose={() => { console.log('clickclcick'); setIsMenuVisible(false) }}
+        />
       </div>
     </div>
   )
