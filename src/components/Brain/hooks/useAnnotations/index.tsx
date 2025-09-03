@@ -13,7 +13,7 @@ export const useAnnotations: (() => GetAnnotationsReturn) = () => {
     {
       label: 'Hi 👋',
       id: 'autoShow',
-      isAutoShow: true,
+      // isAutoShow: true,
       position: [ 0.2, isGteTablet ? -0.15 : -0.135, 0.4 ],
       size: isGteTablet ? 0.0175 : 0.025,
       fontSize: isGteTablet ? 0.01 : 0.015,
@@ -55,9 +55,10 @@ export const useAnnotations: (() => GetAnnotationsReturn) = () => {
       content: `\nnode.js is the foundation on which most of\nthe backend and scripting work I have done\nover the past 5 years rests.\n\nI still remember when it first came out.\nFast forward 10 years and we were writing\nbackends in the same language as\nour web and native client apps.`,
     },
     {
-      label: 'Express',
+      label: 'Express.js',
       position: [ 0.14, 0.325, 0.6 ],
       size: 0.04,
+      fontSize: 0.015,
       expandedPosition: [ 0.35, 0.325, 0.7 ],
       expandedScale: 9,
       expandedCameraPosition: [ 1, 0.75, 2 ],
@@ -172,7 +173,7 @@ export const useAnnotations: (() => GetAnnotationsReturn) = () => {
       fontSize: 0.0095,
       expandedPosition: [ 0, 0, 1 ],
       expandedFontSize: 0.0125,
-      content: `I am an aneurysm survivor.\n7/31/2016.\n\nLook up "Circle of Willis" to see how the\nhuman brain implements critical redundancy.\n\nGet your brain scanned - don't wait!`,
+      content: `I am an aneurysm survivor.\n7/31/2016.\n\nLook up "Circle of Willis" to see how the\nhuman brain implements critical redundancy.\n\nGo get your brain scanned - don't wait!\nYour family loves you!`,
     },
     {
       label: 'Music',
@@ -207,15 +208,15 @@ export const useAnnotations: (() => GetAnnotationsReturn) = () => {
       content: `\nYou can find me on stage playing drums.\nYet another form of mathematical\nmusical expression.`,
     },
     {
-      label: 'Harmonies',
+      label: 'Vocals',
       position: [ -0.125, 0.225, 0.655 ],
-      size: 0.045,
+      size: 0.0325,
       fontSize: 0.015,
       expandedPosition: [ -0.225, 0.2, 1 ],
-      expandedScale: isGteTablet ? 7 : 8,
+      expandedScale: isGteTablet ? 10 : 11,
       expandedCameraPosition: [ -0.55, 0.4, 2.5 ],
-      expandedFontSize: isGteTablet ? 0.015 : 0.0175,
-      content: `My favorite musical instrument\nto perform is vocal harmonies.\n\nThere's just nothing quite like nailing\na 3 or 5, feeling the sound fill out,\nand knowing that the audience\nmight not even know.`,
+      expandedFontSize: isGteTablet ? 0.015 : 0.0165,
+      content: `\nYea I can sing the hell out of a tune.\n\nBut my all time favorite musical instrument\nto perform with is vocal harmonies.\n\nThere's just nothing quite like nailing\na 3 or 5, feeling the sound fill out,\nand knowing that the audience\nmight not even know.`,
     },
 
     {
