@@ -9,7 +9,7 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Running the app on local
 
-* `npm run dev`
+`npm run dev`
 
 ## Linting and Testing
 
