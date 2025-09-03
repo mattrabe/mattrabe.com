@@ -1,6 +1,7 @@
 'use client'
 
 import {
+  useCallback,
   useEffect,
   useState,
   type Dispatch,
@@ -74,6 +75,12 @@ export function Header({
     return () => clearTimeout(timeout)
   }, [ isExpanded ])
 
+  const handleClick = useCallback<(event: React.MouseEvent<HTMLDivElement, MouseEvent> | React.TouchEvent<HTMLDivElement>) => void>(event => {
+    event.stopPropagation()
+
+    setIsExpanded(prev => !prev)
+  }, [ setIsExpanded ])
+
   return (
     <div
       style={{
@@ -92,13 +99,9 @@ export function Header({
         }}
       >
         <div
-          onMouseOver={() => { setIsHovered(true) }}
-          onMouseOut={() => { setIsHovered(false) }}
-          onClick={event => {
-            event.stopPropagation()
-
-            setIsExpanded(prev => !prev)
-          }}
+          onPointerOver={() => { setIsHovered(true) }}
+          onPointerOut={() => { setIsHovered(false) }}
+          onClick={handleClick}
           style={{
             cursor: 'pointer',
             display: 'flex',
@@ -133,7 +136,7 @@ export function Header({
         <Menu
           isVisible={isMenuVisible}
           isOverlayVisible={isMenuOverlayVisible}
-          onRequestClose={() => { console.log('clickclcick'); setIsMenuVisible(false) }}
+          onRequestClose={() => setIsMenuVisible(false)}
         />
       </div>
     </div>

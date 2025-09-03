@@ -20,7 +20,6 @@ export function ScreenWrapper({ children }: { children: React.ReactNode }) {
         alignItems: 'center',
       }}
       onClick={() => setIsHeaderExpanded(false)}
-      onTouchStart={() => setIsHeaderExpanded(false)}
     >
       <Header
         isExpanded={isHeaderExpanded}
