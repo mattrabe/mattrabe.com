@@ -1,0 +1,7 @@
+{
+  "ignorePatterns": [
+    ".next/",
+    "dist/",
+    "node_modules/"
+  ]
+}

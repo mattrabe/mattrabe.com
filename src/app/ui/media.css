@@ -1,0 +1,14 @@
+.hide-on-mobile {
+  display: none;
+}
+.show-on-mobile {
+  display: block;
+}
+@media (min-width: 768px) {
+  .hide-on-mobile {
+    display: block;
+  }
+  .show-on-mobile {
+    display: none;
+  }
+}

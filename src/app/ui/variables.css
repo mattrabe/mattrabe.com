@@ -1,0 +1,28 @@
+:root {
+  --mono-background: #fff;
+  --mono-foreground: #333;
+  --color-background: #f7e8d0;
+  --color-foreground: #37230b;
+
+  --menu-heavy: #040000;
+  --menu-medium: #261211;
+
+  --brain-background: #f9f9f9;
+  --brain-foreground: #37230b;
+  --brain-dark: #898989;
+  --brain-medium: #e6d7bf;
+  --brain-light: #c3c3c3;
+  --brain-red: #cc9999;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mono-background: #333;
+    --mono-foreground: #fff;
+    --color-background: #37230b;
+    --color-foreground: #f7e8d0;
+
+    --menu-heavy: #d5c6a8;
+    --menu-medium: #e6d7bf;
+  }
+}
