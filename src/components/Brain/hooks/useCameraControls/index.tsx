@@ -29,17 +29,10 @@ export function useCameraControls() {
     }
   }, [ cameraControlsRef ])
 
-  const cameraControls = useMemo(() => ({
-    autoRotateEnabled: cameraControlsRef?.current?.autoRotate || false,
-    dragToRotateEnabled: cameraControlsRef?.current?.enableRotate || false,
-  }), [ cameraControlsRef ])
-
   return useMemo(() => ({
-    cameraControls,
     cameraControlsRef,
     setCameraControls,
   }), [
-    cameraControls,
     cameraControlsRef,
     setCameraControls,
   ])

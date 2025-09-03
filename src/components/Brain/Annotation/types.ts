@@ -5,15 +5,16 @@ import type {
 
 export type AnnotationProps = {
   id?: string, // Defaults to label
-  cameraPosition?: Vector3Tuple,
   colors: {
     background?: Color,
     foreground?: Color,
   },
   content?: React.ReactNode,
-  contentPosition?: Vector3Tuple,
   fontSize?: number,
-  expandedContentScale?: number,
+  expandedCameraPosition?: Vector3Tuple,
+  expandedFontSize?: number,
+  expandedPosition?: Vector3Tuple,
+  expandedScale?: number,
   isAutoShow?: boolean, // Defaults to false
   label: string,
   position: Vector3Tuple,

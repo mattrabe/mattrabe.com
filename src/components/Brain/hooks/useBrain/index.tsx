@@ -6,24 +6,27 @@ import {
 
 import { BrainProviderContext } from './context'
 
+const WELCOME_SHOWN_KEY = 'welcomeShown'
+
 export function useBrain() {
   const { expandedItemIdRef } = useContext(BrainProviderContext)
 
-  const setExpandedItemId = useCallback((expandedItemId: string | null) => {
-    if (!expandedItemIdRef) {
-      return
-    }
+  const hasWelcomeBeenShown = useCallback(() => {
+    return localStorage.getItem(WELCOME_SHOWN_KEY) === 'true'
+  }, [])
 
-    expandedItemIdRef.current = expandedItemId
-  }, [ expandedItemIdRef ])
+  const setHasWelcomeBeenShown = useCallback<(bool?: boolean) => void>(bool => {
+    localStorage.setItem(WELCOME_SHOWN_KEY, (bool?.toString() || 'null'))
+  }, [])
 
   return useMemo(() => ({
     expandedItemIdRef,
-    expandedItemId: expandedItemIdRef?.current,
-    setExpandedItemId,
+    hasWelcomeBeenShown,
+    setHasWelcomeBeenShown,
   }), [
     expandedItemIdRef,
-    setExpandedItemId,
+    hasWelcomeBeenShown,
+    setHasWelcomeBeenShown,
   ])
 }
 
