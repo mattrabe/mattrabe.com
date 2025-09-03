@@ -6,6 +6,7 @@ const output = (process.env.NEXT_BUILD_TYPE === 'export' && 'export') ||
 
 const nextConfig: NextConfig = {
   output,
+  allowedDevOrigins: [ '*' ],
   /* config options here */
 };
 
