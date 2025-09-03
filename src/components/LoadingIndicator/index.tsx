@@ -6,7 +6,7 @@ import type { LoadingIndicatorProps } from './types'
 
 export function LoadingIndicator({
   isInCanvas = true,
-  precentProgress = 0,
+  percentProgress = 0,
   wrapperStyle,
   ...props
 }: LoadingIndicatorProps) {
@@ -25,7 +25,7 @@ export function LoadingIndicator({
     >
       <LifeLine
         color='var(--color-muted-foreground)'
-        text={`${precentProgress}%`}
+        text={`${percentProgress.toFixed(0)}%`}
         {...props}
       />
     </Wrapper>

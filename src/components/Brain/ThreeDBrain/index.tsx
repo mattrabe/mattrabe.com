@@ -36,7 +36,7 @@ export function ThreeDBrain() {
     <Suspense
       fallback={(
         <LoadingIndicator
-          precentProgress={progress}
+          percentProgress={progress}
           wrapperStyle={{ transform: 'translate(-50%, -50%)' }}
         />
       )}
