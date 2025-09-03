@@ -6,6 +6,7 @@ import {
   useRef,
 } from 'react'
 import {
+  Color,
   CircleGeometry,
   RingGeometry,
   type Mesh,
@@ -281,6 +282,9 @@ export function Annotation({
           anchorY='middle'
           textAlign='center'
           fontSize={fontSize}
+          outlineWidth={0.0025}
+          outlineBlur={0.003125}
+          outlineColor={new Color(2.55, 2.25, 2.25)}
         >
           {label}
 
@@ -297,6 +301,9 @@ export function Annotation({
           anchorY='middle'
           textAlign='center'
           fontSize={expandedFontSize / expandedScale * 2}
+          outlineWidth={0.00025}
+          outlineBlur={0.003125}
+          outlineColor={new Color(2.55, 2.25, 2.25)}
         >
           {content}
 
