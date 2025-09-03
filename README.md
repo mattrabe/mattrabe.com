@@ -17,6 +17,12 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 `pnpm lint`
 
+## Deploying
+
+This app is deployed using Vercel automatically, any time a PR is merged into the `main` branch.
+
+See Vercel project here: https://vercel.com/matt-rabe/mattrabe-com
+
 ## Ensuring proper node.js version
 
 This monorepo requires a specific node.js version, set in package.json and .nvmrc.
