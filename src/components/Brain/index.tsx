@@ -4,11 +4,11 @@ import {
 } from 'react'
 import { Canvas } from '@react-three/fiber'
 
+import { LoadingIndicator } from '@/components/LoadingIndicator'
+
 import { BrainProvider } from '@/components/Brain/hooks/useBrain/context'
 import { CameraControlsRefProvider } from '@/components/Brain/hooks/useCameraControls/context'
 import { useDefaultCameraPosition } from '@/components/Brain/hooks/useCameraPosition'
-
-import { BrainLoader } from './Loader'
 
 import { ThreeDBrain } from './ThreeDBrain'
 
@@ -19,7 +19,7 @@ export function Brain() {
 
   return (
     <>
-      <Suspense fallback={<BrainLoader />}>
+      <Suspense fallback={<LoadingIndicator />}>
         <Canvas
           ref={cameraRef}
           camera={{

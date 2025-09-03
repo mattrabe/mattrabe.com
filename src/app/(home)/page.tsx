@@ -1,7 +1,9 @@
 'use client'
 
-import { Brain } from '@/components/Brain'
+import { Suspense } from 'react'
 
+import { Brain } from '@/components/Brain'
+import { LoadingIndicator } from '@/components/LoadingIndicator'
 import { ScreenWrapper } from '@/components/ScreenWrapper'
 
 export default function Home() {
@@ -16,7 +18,9 @@ export default function Home() {
           alignItems: 'center',
         }}
       >
-        <Brain />
+        <Suspense fallback={<LoadingIndicator />}>
+          <Brain />
+        </Suspense>
       </div>
     </ScreenWrapper>
   )
