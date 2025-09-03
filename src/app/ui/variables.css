@@ -1,8 +1,10 @@
 :root {
   --mono-background: #fff;
   --mono-foreground: #333;
+  --mono-muted-foreground: #999;
   --color-background: #f7e8d0;
   --color-foreground: #37230b;
+  --color-muted-foreground: #97836b;
 
   --menu-heavy: #040000;
   --menu-medium: #261211;
@@ -19,6 +21,7 @@
   :root {
     --mono-background: #333;
     --mono-foreground: #fff;
+    --mono-muted-foreground: #999;
     --color-background: #37230b;
     --color-foreground: #f7e8d0;
 

@@ -8,15 +8,16 @@ import {
   useProgress,
 } from '@react-three/drei'
 
+import { LoadingIndicator } from '@/components/LoadingIndicator'
+
 import { Annotations } from '@/components/Brain/Annotations'
-import { BrainLoader } from '@/components/Brain/Loader'
 import { useCameraControls } from '@/components/Brain/hooks/useCameraControls'
 import { useBrain } from '@/components/Brain/hooks/useBrain'
 
 import { BrainModel } from './BrainModel'
 
 export function ThreeDBrain() {
-  const progress = useProgress()
+  const { progress } = useProgress()
 
   const { expandedItemIdRef } = useBrain()
   const { cameraControlsRef } = useCameraControls()
@@ -34,8 +35,8 @@ export function ThreeDBrain() {
   return (
     <Suspense
       fallback={(
-        <BrainLoader
-          state={progress}
+        <LoadingIndicator
+          precentProgress={progress}
           wrapperStyle={{ transform: 'translate(-50%, -50%)' }}
         />
       )}
