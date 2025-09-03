@@ -9,13 +9,15 @@ import {
   FaGithub,
 } from 'react-icons/fa'
 
+import { RESUME_LINK_URL } from '@/components/Resume'
+
+import type { MenuProps } from './types'
+
 const OPACITY = {
   off: 0,
   on: 0.95,
 }
 const BORDER_RADIUS = 7
-
-import type { MenuProps } from './types'
 
 export function Menu({
   isOverlayVisible = false,
@@ -58,6 +60,14 @@ export function Menu({
         <MenuItem href='/?' as ='/'>Home</MenuItem>
         <MenuItem
           href='/resume'
+          className='hide-on-mobile'
+        >
+          Resume
+        </MenuItem>
+        <MenuItem
+          href={RESUME_LINK_URL}
+          openInNewTab={true}
+          className='show-on-mobile'
         >
           Resume
         </MenuItem>
