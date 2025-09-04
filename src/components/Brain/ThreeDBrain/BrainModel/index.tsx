@@ -1,17 +1,18 @@
 import { useMemo } from 'react'
-import type {
-  Color,
-  Object3D,
-} from 'three'
+import type { Object3D } from 'three'
 import type { GLTF } from 'three-stdlib'
 import type { ObjectMap } from '@react-three/fiber'
 import {
+  MeshTransmissionMaterial,
   useGLTF,
 } from '@react-three/drei'
 
 import { useStyles } from '@/hooks/useStyles'
 
-import type { Node3D } from './types'
+import type {
+  BrainNode,
+  Node3D,
+} from './types'
 
 const BRAIN_GLB_PATH = '/3D/models/brain_areas.glb'
 //const BRAIN_GLB_PATH = '/3D/models/brain_areas-compressed.glb'
@@ -48,7 +49,17 @@ export function BrainModel({ onClickBrain }: { onClickBrain?: () => void }) {
           geometry={brainNodes[key].object3d.geometry}
           material={material}
         >
-          <meshStandardMaterial color={brainNodes[key].color} />
+          {(brainNodes[key].isTransitionMaterial && (
+            <MeshTransmissionMaterial
+              color={brainNodes[key].color}
+              // background={brainNodes[key].color}
+              chromaticAberration={0} // default 0.3
+              anisotropy={0} // default is 0.1
+              distortionScale={0} // default is 0.5
+              temporalDistortion={0} // default is 0
+              transmissionSampler={false} // default is false
+            />
+          )) || <meshStandardMaterial color={brainNodes[key].color} />}
         </mesh>
       ))}
     </group>
@@ -64,41 +75,44 @@ function useBrainNodes(gltf: GLTF & ObjectMap) {
   }), [ getColorVarThree ])
 
   return useMemo(() => {
-    const brainRaw: Record<string, { color?: Color, object3d: Object3D }> = {
+    const brainRaw: Record<string, Omit<BrainNode, 'object3d'> & { object3d: Object3D }> = {
       pituitaryGland: {
-        object3d: gltf.nodes.Brain_Part_01_BRAIN_TEXTURE_blinn2_0,
         color: colors.medium,
+        object3d: gltf.nodes.Brain_Part_01_BRAIN_TEXTURE_blinn2_0,
       },
       cerebellum: {
-        object3d: gltf.nodes.Brain_Part_02_BRAIN_TEXTURE_blinn2_0,
         color: colors.dark,
+        object3d: gltf.nodes.Brain_Part_02_BRAIN_TEXTURE_blinn2_0,
       },
       corpusCallosum: {
-        object3d: gltf.nodes.Brain_Part_03_BRAIN_TEXTURE_blinn2_0,
         color: colors.medium,
+        object3d: gltf.nodes.Brain_Part_03_BRAIN_TEXTURE_blinn2_0,
       },
       leftHemisphere: {
-        object3d: gltf.nodes.Brain_Part_04_BRAIN_TEXTURE_blinn2_0,
         color: colors.light,
+        isTransitionMaterial: true,
+        object3d: gltf.nodes.Brain_Part_04_BRAIN_TEXTURE_blinn2_0,
       },
       stem: {
-        object3d: gltf.nodes.Brain_Part_05_BRAIN_TEXTURE_blinn2_0,
         color: colors.medium,
+        object3d: gltf.nodes.Brain_Part_05_BRAIN_TEXTURE_blinn2_0,
       },
       rightHemisphere: {
-        object3d: gltf.nodes.Brain_Part_06_BRAIN_TEXTURE_blinn2_0,
         color: colors.light,
+        isTransitionMaterial: true,
+        object3d: gltf.nodes.Brain_Part_06_BRAIN_TEXTURE_blinn2_0,
       },
     }
 
     // `.geometry` does not exist on the THREE.Object3D type, but it does exist in the nodes pulled out from the GLB
     // Map over the nodes here using the isNode3D type gaurd to apply the proper type while maintaining type safety
-    const brain: Record<string, { color?: Color, object3d: Node3D }> = Object.entries(brainRaw)
-      .reduce((acc: Record<string, { color?: Color, object3d: Node3D }>, [key, value]) => {
+    const brain: Record<string, BrainNode> = Object.entries(brainRaw)
+      .reduce((acc: Record<string, BrainNode>, [key, value]) => {
         if (isNode3D(value.object3d)) {
           acc[key] = {
-            object3d: value.object3d,
             color: value.color,
+            isTransitionMaterial: value.isTransitionMaterial,
+            object3d: value.object3d,
           }
         }
 
