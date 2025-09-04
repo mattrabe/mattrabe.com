@@ -4,6 +4,7 @@ import {
   useEffect,
   useMemo,
 } from 'react'
+import { Color } from 'three'
 import { Html } from '@react-three/drei'
 
 import { Annotation } from '@/components/Brain/Annotation'
@@ -18,6 +19,7 @@ export function Annotations() {
   const colors = useMemo(() => ({
     background: getColorVarThree('--brain-background'),
     foreground: getColorVarThree('--brain-foreground'),
+    white: new Color('#ffffff'),
   }), [ getColorVarThree ])
 
   const { setCameraControls } = useCameraControls()

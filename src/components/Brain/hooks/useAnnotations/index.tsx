@@ -29,8 +29,9 @@ export const useAnnotations: (() => GetAnnotationsReturn) = () => {
       fontSize: isGteTablet ? 0.01 : 0.015,
       expandedPosition: [ 0, 0, 1 ],
       expandedScale: isGteTablet ? 14 : 13.5,
+      expandedFontSize: isGteTablet ? 0.009 : 0.013,
       expandedCameraPosition: [ 0, 0, 2.5 ],
-      content: `I built this 3D interface using\nReact Three Fiber+React Three Drei.\n\nI had never used those tools before\nand it was a fun challenge.\n\nThe brain itself is the lovely "Brain Areas"\nmodel by Versal (https://skfb.ly/AFry)\nand is licensed under\nCreative Commons Attribution 4.0.\n`,
+      content: `I built this 3D interface using\nReact Three Fiber+React Three Drei.\n\nI had never used those tools before\nand it was a fun challenge.\n\nSource is available on Github\n(https://github.com/mrabe/3D-Brain).\n\nThe brain model is the lovely "Brain Areas"\nmodel by Versal (https://skfb.ly/AFry)\nand is licensed under\nCreative Commons Attribution 4.0.\n`,
     },
 
     {
@@ -76,7 +77,7 @@ export const useAnnotations: (() => GetAnnotationsReturn) = () => {
       size: 0.03,
       expandedPosition: [ 0.375, 0.175, 0.6 ],
       expandedCameraPosition: [ 1.245, 0.225, 2 ],
-      content: `AWS Copilot for automation.\nECS and EKS for Dockerization.\nS3 for storage and static hosting.\nLambda for serverless functions.\nSecrets Manager for secrets.\nRDS for data.`,
+      content: `AWS Copilot for automation.\nECS and EKS for containers.\nEC2 for compute.\nS3 for storage and static hosting.\nLambda for serverless functions.\nSecrets Manager for secrets.\nRDS for relational data.`,
     },
     {
       label: 'Docker',
