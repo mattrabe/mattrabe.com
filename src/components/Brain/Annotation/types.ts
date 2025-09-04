@@ -8,6 +8,7 @@ export type AnnotationProps = {
   colors: {
     background?: Color,
     foreground?: Color,
+    white: Color,
   },
   content?: React.ReactNode,
   fontSize?: number,

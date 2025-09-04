@@ -279,7 +279,7 @@ export function Annotation({
         scale={springs.scale}
       >
         <meshStandardMaterial
-          color={colors.background}
+          color={colors.white}
           map={annotationTexture}
           metalness={1.35}
           // roughness={0} // Makes the surface completely mirror reflective, which reflects back the stage background producing a cool effect. Problem is that when you expand an annotation the user then sees the pixelated background enlarged
