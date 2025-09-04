@@ -18,7 +18,10 @@ import {
   useThree,
   type ThreeEvent,
 } from '@react-three/fiber'
-import { Text } from '@react-three/drei'
+import {
+  Text,
+  useTexture,
+} from '@react-three/drei'
 import {
   animated,
   useSpring,
@@ -243,6 +246,8 @@ export function Annotation({
     return () => clearTimeout(timeout)
   })
 
+  const annotationTexture = useTexture('/3D/textures/annotationTexture.jpg')
+
   if (!colors?.background || !colors?.foreground) {
     return null
   }
@@ -257,7 +262,9 @@ export function Annotation({
         ref={outlineRef}
         scale={springs.scale}
       >
-        <meshStandardMaterial color={colors.foreground} />
+        <meshStandardMaterial
+          metalness={100} // reflect a lot, makes a shiny ring
+        />
       </animated.mesh>
 
       {/* container circle */}
@@ -273,6 +280,9 @@ export function Annotation({
       >
         <meshStandardMaterial
           color={colors.background}
+          map={annotationTexture}
+          metalness={1.35}
+          // roughness={0} // Makes the surface completely mirror reflective, which reflects back the stage background producing a cool effect. Problem is that when you expand an annotation the user then sees the pixelated background enlarged
         />
 
         <AnimatedText
