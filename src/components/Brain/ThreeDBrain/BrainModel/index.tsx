@@ -13,8 +13,8 @@ import { useStyles } from '@/hooks/useStyles'
 
 import type { Node3D } from './types'
 
-const BRAIN_GLB_PATH = '/3d-models/brain_areas.glb'
-//const BRAIN_GLB_PATH = '/3d-models/brain_areas-compressed.glb'
+const BRAIN_GLB_PATH = '/3D/models/brain_areas.glb'
+//const BRAIN_GLB_PATH = '/3D/models/brain_areas-compressed.glb'
 
 useGLTF.preload(BRAIN_GLB_PATH)
 
