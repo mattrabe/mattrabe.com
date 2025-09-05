@@ -18,6 +18,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: 'Matt Rabe',
+  description: 'Matt Rabe is a software engineer, musician, woodworker, and father.',
   icons: [
     {
       media: '(prefers-color-scheme: light)',
@@ -30,6 +31,13 @@ export const metadata: Metadata = {
       type: 'image/svg+xml',
     },
   ],
+  openGraph: {
+    'firstName': 'Matt',
+    'lastName': 'Rabe',
+    'locale': 'en_US',
+    'type': 'profile',
+    'url': 'https://mattrabe.com',
+  },
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
