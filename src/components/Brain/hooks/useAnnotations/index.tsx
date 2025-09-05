@@ -53,7 +53,7 @@ export const useAnnotations: (() => GetAnnotationsReturn) = () => {
       expandedScale: 9.5,
       expandedCameraPosition: [ 0.33, 0.5, 2 ],
       expandedFontSize: 0.0115,
-      content: `\nnode.js is the foundation on which most of\nthe backend and scripting work I have done\nover the past 5 years rests.\n\nI still remember when it first came out.\nFast forward 10 years and we were writing\nbackends in the same language as\nour web and native client apps.`,
+      content: `\nnode.js is the foundation on which most of\nthe backend and scripting work I have done\nover the past 5 years rests.\n\nI remember when it came out. I used it to\nwrite some scripts that could run locally.\nFast forward 10 years and I was writing\nbackend APIs and web and native clients\nin a single language.`,
     },
     {
       label: 'Express.js',
@@ -195,7 +195,7 @@ export const useAnnotations: (() => GetAnnotationsReturn) = () => {
       expandedScale: 7,
       expandedFontSize: 0.0125,
       expandedCameraPosition: [ -0.4, 0.1, 2 ],
-      content: `\nI wail. Though these days you're\nmore likely to find me strumming\naround a campfire or jamming\nwith my son than shredding\non a stage.`,
+      content: `\nI wail. Though these days you're\nmore likely to find me strumming\naround a campfire or jamming\nwith my son than shredding\nin front of a mosh pit.`,
     },
     {
       label: 'Drums',
@@ -203,10 +203,10 @@ export const useAnnotations: (() => GetAnnotationsReturn) = () => {
       size: 0.0305,
       fontSize: 0.016,
       expandedPosition: [ -0.35, 0.15, 1 ],
-      expandedScale: isGteTablet ? 10 : 8,
-      expandedFontSize: isGteTablet ? 0.015 : 0.0125,
+      expandedScale: isGteTablet ? 10 : 7.75,
+      expandedFontSize: isGteTablet ? 0.015 : 0.01175,
       expandedCameraPosition: [ -0.7, 0.25, 2 ],
-      content: `\nYou can find me on stage playing drums.\nYet another form of mathematical\nmusical expression.`,
+      content: `\nYou can find me on stage playing drums.\nAnother form of mathematical\nmusical expression.`,
     },
     {
       label: 'Vocals',
