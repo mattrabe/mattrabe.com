@@ -134,8 +134,6 @@ function MenuItem({
 
   return (
     <Link
-      onClick={event => { event.stopPropagation() }} // Must stop event propagation to avoid header closing
-      onTouchStart={event => { event.stopPropagation() }} // Must stop event propagation to avoid header closing
       onMouseOver={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       target={openInNewTab ? '_blank' : undefined}
