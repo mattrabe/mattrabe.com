@@ -42,5 +42,32 @@ export function Brain() {
 }
 
 function Fallback() {
-  return <p>Boo, your browser doesn&apos;t support javascript or HTML canvas.</p>
+  return (
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+      }}
+    >
+      <p
+        style={{
+          fontSize: '3rem',
+          textAlign: 'center',
+        }}
+      >
+        👻
+      </p>
+      <p
+        style={{
+          fontSize: '1.5rem',
+          textAlign: 'center',
+        }}
+      >
+        Boo, your browser doesn&apos;t support javascript or HTML canvas.
+      </p>
+    </div>
+  )
 }
