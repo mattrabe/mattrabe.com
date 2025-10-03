@@ -39,7 +39,7 @@ export function Resume(props: {
         className='hide-on-mobile'
         src={RESUME_EMBED_URL}
         style={{
-          backgroundColor: '#ccc',
+          backgroundColor: '#fff',
           borderTop: 'none',
           borderBottom: 'none',
           borderLeft: 'solid 1px #ccc',
