@@ -7,12 +7,13 @@ import {
 import { Color } from 'three'
 import { Html } from '@react-three/drei'
 
-import { Annotation } from '@/components/Brain/Annotation'
-import { useAnnotations } from '@/components/Brain/hooks/useAnnotations'
 import { useBrain } from '@/components/Brain/hooks/useBrain'
 import { useCameraControls } from '@/components/Brain/hooks/useCameraControls'
 
 import { useStyles } from '@/hooks/useStyles'
+
+import { Annotation } from './Annotation'
+import { useAnnotations } from './useAnnotations'
 
 export function Annotations() {
   const { getColorVarThree } = useStyles()
@@ -72,3 +73,5 @@ export function Annotations() {
     </>
   )
 }
+
+export { useAnnotations } from './useAnnotations'
