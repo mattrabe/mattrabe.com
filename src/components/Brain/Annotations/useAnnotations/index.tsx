@@ -164,7 +164,7 @@ export const useAnnotations: (() => GetAnnotationsReturn) = () => {
       expandedCameraPosition: [ -0.35, 1, 2.1 ],
       expandedScale: 7,
       expandedFontSize: 0.0175,
-      content: `Agentic IDEs, "vibe coding",\nusing AI to write more tests in\nless time than I ever could,\nmaking AI write code in\nlanguages I don't know,\nCursor instead of VSCode,\nGithub Copilot, OpenAI, Anthropic,\nAmazon Rekognition, LangChain,\n RAG, chatbots, using AI to\nfix slippery bugs.`,
+      content: `Agentic IDEs,\nusing AI to write more tests in\nless time than I ever could,\nmaking AI write code in\nlanguages I don't know,\nCursor instead of VSCode,\n"vibe coding",\nGithub Copilot, OpenAI, Anthropic,\nAmazon Rekognition, LangChain,\n RAG, chatbots, using AI to\nfix slippery bugs.`,
     },
     {
       label: 'React',
