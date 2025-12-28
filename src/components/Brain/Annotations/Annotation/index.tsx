@@ -58,6 +58,7 @@ export function Annotation({
   const outlineRef = useRef<Mesh>(null)
   const labelMaterialRef = useRef<MeshStandardMaterial>(null)
   const contentMaterialRef = useRef<MeshStandardMaterial>(null)
+  const closeButtonMaterialRef = useRef<MeshStandardMaterial>(null)
   const previousCameraPositionRef = useRef<Vector3Tuple>([ 0, 0, 2.5 ])
 
   const { setCameraControls } = useCameraControls()
@@ -81,6 +82,9 @@ export function Annotation({
     }
     if (contentMaterialRef.current) {
       contentMaterialRef.current.opacity = springs.contentOpacity.get()
+    }
+    if (closeButtonMaterialRef.current) {
+      closeButtonMaterialRef.current.opacity = springs.contentOpacity.get()
     }
   })
 
@@ -225,6 +229,24 @@ export function Annotation({
     openAnnotation,
   ])
 
+  const handleCloseClick = useCallback(async (event: ThreeEvent<MouseEvent>) => {
+    // Don't fire click events on any layers that might be below this annotation
+    event?.stopPropagation()
+
+    if (!expandedItemIdRef) {
+      return
+    }
+
+    // Only close if this annotation is currently expanded
+    if (expandedItemIdRef.current === id) {
+      closeAnnotation()
+    }
+  }, [
+    closeAnnotation,
+    expandedItemIdRef,
+    id,
+  ])
+
   // Open this annotation automatically if it isAutoShow
   useEffect(() => {
     if (!isAutoShow) {
@@ -319,6 +341,28 @@ export function Annotation({
 
           <meshStandardMaterial
             ref={contentMaterialRef}
+            color={colors.foreground}
+            transparent={true}
+          />
+        </AnimatedText>
+        <AnimatedText
+          castShadow={false}
+          position={[ 0, size * 0.85, 0.002 ]}
+          anchorX='center'
+          anchorY='middle'
+          textAlign='center'
+          fontSize={expandedFontSize / expandedScale * 2.5}
+          outlineWidth={0.00025}
+          outlineBlur={0.003125}
+          outlineColor={new Color(2.55, 2.25, 2.25)}
+          onClick={handleCloseClick}
+          onPointerOver={() => document.body.style.cursor = 'pointer'}
+          onPointerOut={() => document.body.style.cursor = 'default'}
+        >
+          ×
+
+          <meshStandardMaterial
+            ref={closeButtonMaterialRef}
             color={colors.foreground}
             transparent={true}
           />
